@@ -7,14 +7,15 @@
             height="200"
             cover
             eager
+            lazy-src="https://picsum.photos/id/11/10/6"
             :src="
               item.image_id
                 ? `https://www.artic.edu/iiif/2/${item.image_id}/full/!800,800/0/default.jpg`
                 : '../public/img/no-image-art-work.png'
             "
           ></v-img>
-          <v-card-title>{{ item.title }}</v-card-title>
-          <v-card-subtitle>{{ item.genre }}</v-card-subtitle>
+          <v-card-title>{{ item.title ? item.title : 'No title' }}</v-card-title>
+          <v-card-subtitle>{{ item.artwork_type_title }}</v-card-subtitle>
         </v-card>
       </v-col>
     </v-row>
@@ -35,8 +36,6 @@ const goToDetails = (id) => {
 const artWorkStore = useArtWorkStore()
 
 const items = computed(() => artWorkStore.artWork)
-
-console.log(items.value)
 
 onMounted(async () => {
   await artWorkStore.getArtWork()

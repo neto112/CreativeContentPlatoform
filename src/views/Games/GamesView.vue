@@ -14,7 +14,7 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
-import games from '../data/games'
+import games from '../../data/games'
 
 const router = useRouter()
 const goToDetails = (id) => {

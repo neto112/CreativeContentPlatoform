@@ -1,28 +1,23 @@
 <template>
   <v-container>
-    <v-img :src="content.thumbnail" height="400px"></v-img>
-    <v-card-title>{{ content.title }}</v-card-title>
-    <v-card-subtitle>{{ content.genre }}</v-card-subtitle>
-    <v-card-text>{{ content.short_description }}</v-card-text>
-    <v-card-text>Platform: {{ content.platform }}</v-card-text>
-    <v-card-text>Publisher: {{ content.publisher }}</v-card-text>
-    <v-card-text>Developer: {{ content.developer }}</v-card-text>
-    <v-card-text>Release Date: {{ content.release_date }}</v-card-text>
-    <v-rating v-model="content.rating" background-color="yellow lighten-3"></v-rating>
+    <!-- Verifica se content.thumbnail está definido antes de exibir -->
+    <GamesById :propItems="itemsGames" />
   </v-container>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import games from '../data/games'
+import GamesById from './Games/GamesById.vue'
 
 const route = useRoute()
-const content = ref({})
+
+const itemsGames = ref({})
 
 onMounted(async () => {
   const id = route.params.id
-  content.value = games.find((game) => game.id === parseInt(id))
+  itemsGames.value = games.find((game) => game.id === parseInt(id))
 })
 </script>
 
