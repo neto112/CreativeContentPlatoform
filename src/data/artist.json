@@ -5,7 +5,7 @@
     "artistName": "Adam Lambert",
     "albumName": "Everything",
     "year": 2021,
-    "picture": "https://source.unsplash.com/random/400x400?date=1"
+    "thumbnail": "https://source.unsplash.com/random/400x400?date=1"
   },
   {
     "id": 2,
@@ -13,7 +13,7 @@
     "artistName": "Adam Levine",
     "albumName": "Goind Down",
     "year": 2001,
-    "picture": "https://source.unsplash.com/random/400x400?date=2"
+    "thumbnail": "https://source.unsplash.com/random/400x400?date=2"
   },
   {
     "id": 3,
@@ -21,70 +21,69 @@
     "artistName": "Adam Hart",
     "albumName": "Spice It Up",
     "year": 2013,
-    "picture": "https://source.unsplash.com/random/400x400?date=3"
-  }
+    "thumbnail": "https://source.unsplash.com/random/400x400?date=3"
+  },
   {
     "id": 4,
     "title": "Death Bed",
     "artist": "Powfu",
     "year": 2020,
-    "picture": "https://samplesongs.netlify.app/album-arts/death-bed.jpg"
+    "thumbnail": "https://samplesongs.netlify.app/album-arts/death-bed.jpg"
   },
   {
     "id": 5,
     "title": "Bad Liar",
     "artist": "Imagine Dragons",
     "year": 2018,
-    "picture": "https://samplesongs.netlify.app/album-arts/bad-liar.jpg"
+    "thumbnail": "https://samplesongs.netlify.app/album-arts/bad-liar.jpg"
   },
   {
     "id": 6,
     "title": "Faded",
     "artist": "Alan Walker",
     "year": 2015,
-    "picture": "https://samplesongs.netlify.app/album-arts/faded.jpg"
+    "thumbnail": "https://samplesongs.netlify.app/album-arts/faded.jpg"
   },
   {
     "id": 7,
     "title": "Hate Me",
     "artist": "Ellie Goulding",
     "year": 2019,
-    "picture": "https://samplesongs.netlify.app/album-arts/hate-me.jpg"
+    "thumbnail": "https://samplesongs.netlify.app/album-arts/hate-me.jpg"
   },
   {
     "id": 8,
     "title": "Solo",
     "artist": "Clean Bandit",
     "year": 2018,
-    "picture": "https://samplesongs.netlify.app/album-arts/solo.jpg"
+    "thumbnail": "https://samplesongs.netlify.app/album-arts/solo.jpg"
   },
   {
     "id": 9,
     "title": "Without Me",
     "artist": "Halsey",
     "year": 2020,
-    "picture": "https://samplesongs.netlify.app/album-arts/without-me.jpg"
+    "thumbnail": "https://samplesongs.netlify.app/album-arts/without-me.jpg"
   },
   {
     "id": 10,
     "title": "The Less I Know the Better",
     "artist": "Tampe Impala",
     "year": 2020,
-    "picture": "https://samplesongs.netlify.app/album-arts/without-me.jpg"
+    "thumbnail": "https://samplesongs.netlify.app/album-arts/without-me.jpg"
   },
   {
     "id": 11,
     "title": "Baby",
     "artist": "Justin Bieber",
     "year": 2006,
-    "picture": "https://th.bing.com/th/id/OIP.wfg6sIM0YAd9wYn9Vj8QtwHaJf?pid=ImgDet&rs=1"
+    "thumbnail": "https://th.bing.com/th/id/OIP.wfg6sIM0YAd9wYn9Vj8QtwHaJf?pid=ImgDet&rs=1"
   },
   {
     "id": 12,
     "title": "Beat it",
     "artist": "Michael Jackson",
     "year": 1988,
-    "picture": "https://th.bing.com/th/id/OIP.IhlADTDIs8F-qdTQSZqoQwHaMb?pid=ImgDet&rs=1",
+    "thumbnail": "https://th.bing.com/th/id/OIP.IhlADTDIs8F-qdTQSZqoQwHaMb?pid=ImgDet&rs=1"
   }
 ]
-
