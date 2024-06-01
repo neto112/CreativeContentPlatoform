@@ -1,29 +1,122 @@
 <template>
-  <v-app-bar app>
-    <v-toolbar-title>Content Platform</v-toolbar-title>
-    <v-spacer></v-spacer>
-    <v-text-field
-      v-model="search"
-      append-inner-icon="search"
-      label="Search"
-      single-line
-      hide-details
-      rounded="xl"
-    />
-    <v-btn to="/">Home</v-btn>
-    <v-btn to="/games">Games</v-btn>
-    <v-btn to="/videos">Videos</v-btn>
-    <v-btn to="/artwork">Artwork</v-btn>
-    <v-btn to="/music">Music</v-btn>
+  <v-app-bar app class="px-2 app-bar-gradient">
+    <v-row align="center">
+      <v-col cols="auto" v-if="!mobile">
+        <v-img
+          src="https://gravity.blue/wp-content/uploads/2022/12/cropped-cropped-Filled_TextLongLogoNoUnderscore@2x-1.png"
+          height="64"
+          class="mr-4"
+        />
+      </v-col>
+      <v-col :cols="mobile ? 9 : 3">
+        <v-text-field
+          v-model="search"
+          append-inner-icon="search"
+          label="Search"
+          single-line
+          hide-details
+          @input="updateSearch"
+          variant="filled"
+          density="compact"
+          class="search-field"
+        />
+      </v-col>
+      <v-spacer></v-spacer>
+      <v-col cols="auto" v-if="!mobile">
+        <v-btn-toggle v-model="activeRoute" mandatory color="transparent" base-color="transparent">
+          <v-btn
+            v-for="route in routes"
+            :key="route.path"
+            :value="route.path"
+            text
+            :to="route.path"
+            style="background: transparent"
+            :class="{ 'active-nav-btn': isActive(route.path) }"
+          >
+            {{ route.name }}
+          </v-btn>
+        </v-btn-toggle>
+      </v-col>
+      <v-col cols="3" v-else>
+        <v-menu offset-y>
+          <template v-slot:activator="{ props }">
+            <v-btn icon v-bind="props">
+              <v-icon icon="menu" />
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item to="/">
+              <v-list-item-title>Home</v-list-item-title>
+            </v-list-item>
+            <v-list-item to="/games">
+              <v-list-item-title>Games</v-list-item-title>
+            </v-list-item>
+            <v-list-item to="/videos">
+              <v-list-item-title>Videos</v-list-item-title>
+            </v-list-item>
+            <v-list-item to="/artworks">
+              <v-list-item-title>Artworks</v-list-item-title>
+            </v-list-item>
+            <v-list-item to="/music">
+              <v-list-item-title>Music</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </v-col>
+    </v-row>
   </v-app-bar>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import { useContentStore } from '../stores/content'
+import { useDisplay } from 'vuetify'
+import { useRoute } from 'vue-router'
 
 const search = ref('')
+const contentStore = useContentStore()
+const { mobile } = useDisplay()
+const route = useRoute()
+
+const activeRoute = ref(route.path)
+
+const updateSearch = () => {
+  contentStore.setSearchQuery(search.value)
+}
+
+const isActive = (path) => {
+  return route.path === path
+}
+
+const routes = [
+  { name: 'Home', path: '/' },
+  { name: 'Games', path: '/games' },
+  { name: 'Videos', path: '/videos' },
+  { name: 'Artworks', path: '/artworks' },
+  { name: 'Music', path: '/music' }
+]
 </script>
 
 <style scoped>
-/* Add your styles here */
+.app-bar-gradient {
+  background: linear-gradient(90deg, var(--v-blue300), var(--v-gray100)) !important;
+  color: var(--v-white);
+}
+
+.search-field {
+  background-color: var(--v-white);
+}
+
+.nav-btn {
+  color: var(--v-white) !important;
+  font-weight: bold;
+}
+
+.v-menu {
+  color: var(--v-black);
+}
+
+.active-nav-btn {
+  color: var(--v-blue300) !important;
+}
 </style>

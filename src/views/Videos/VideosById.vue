@@ -1,23 +1,30 @@
 <template>
-  <v-container>
-    <v-img
-      :src="propItems.thumbnailUrl"
-      height="400px"
-      lazy-src="https://picsum.photos/id/11/10/6"
-    />
-    <v-card-title>{{ propItems.title }}</v-card-title>
-    <v-card-text>Duration: {{ propItems.duration }}</v-card-text>
-    <v-card-text>Upload Time: {{ propItems.uploadTime }}</v-card-text>
-    <v-card-text>Views: {{ propItems.views }}</v-card-text>
-    <v-card-text>Author: {{ propItems.author }}</v-card-text>
-    <v-card-text>{{ propItems.description }}</v-card-text>
-    <v-card-text>Subscribers: {{ propItems.subscriber }}</v-card-text>
-    <v-rating
-      v-if="propItems.rating"
-      v-model="propItems.rating"
-      background-color="yellow lighten-3"
-    ></v-rating>
-  </v-container>
+  <v-row justify="center" align="center">
+    <v-col cols="auto">
+      <video
+        controls
+        :src="propItems.videoUrl"
+        height="600"
+        width="600"
+        lazy-src="https://picsum.photos/id/11/10/6"
+      />
+    </v-col>
+    <v-col cols="auto">
+      <v-card-title>{{ propItems.title }}</v-card-title>
+      <v-card-subtitle>{{ propItems.genre }}</v-card-subtitle>
+      <v-card-text>{{ propItems.short_description }}</v-card-text>
+      <v-card-text>Platform: {{ propItems.duration }}</v-card-text>
+      <v-card-text>Publisher: {{ propItems.uploadTime }}</v-card-text>
+      <v-card-text>Developer: {{ propItems.views }}</v-card-text>
+      <v-card-text>Release Date: {{ propItems.author }}</v-card-text>
+      <v-rating
+        v-if="propItems.rating"
+        v-model="propItems.rating"
+        background-color="yellow lighten-3"
+        readonly
+      ></v-rating>
+    </v-col>
+  </v-row>
 </template>
 
 <script setup>

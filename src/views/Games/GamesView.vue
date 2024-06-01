@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="12" sm="12" md="6" lg="4" xl="3" v-for="game in games" :key="game.id">
         <v-card @click="goToDetails(game.id)">
-          <v-img :src="game.thumbnail" height="200px"></v-img>
+          <v-img :src="game.thumbnail" height="200px" />
           <v-card-title>{{ game.title }}</v-card-title>
           <v-card-subtitle>{{ game.genre }}</v-card-subtitle>
         </v-card>
