@@ -1,32 +1,68 @@
 <template>
   <v-container>
-    <v-row>
-      <template v-if="!mobile">
-        <v-col v-for="item in filteredContent" :key="item.id" cols="12" sm="6" md="4" lg="3">
-          <v-card class="mb-4 desktop-card card-shadow" @click="goToDetails(item.id)">
-            <v-img
-              lazy-src="https://picsum.photos/id/11/10/6"
-              :src="item.thumbnail ? item.thumbnail : '../public/img/no-image-art-work.png'"
-              cover
-              height="150"
-            />
-            <v-card-title>{{ item.title }}</v-card-title>
-            <v-card-subtitle>{{ item.category }}</v-card-subtitle>
-          </v-card>
-        </v-col>
+    <v-data-iterator
+      :items="filteredContent"
+      :items-per-page="itemsPerPage"
+      v-model:page="page"
+      v-if="!mobile"
+    >
+      <template v-slot:default="{ items }">
+        <v-row>
+          <v-col v-for="item in items" :key="item.id" cols="12" sm="6" md="4" lg="3">
+            <v-hover>
+              <template v-slot:default="{ isHovering, props }">
+                <v-card
+                  v-bind="props"
+                  class="mb-4 desktop-card card-shadow"
+                  @click="goToDetails(item.raw.id)"
+                  :color="isHovering ? 'gray100' : undefined"
+                >
+                  <v-img
+                    lazy-src="https://picsum.photos/id/11/10/6"
+                    :src="
+                      item.raw.thumbnail
+                        ? item.raw.thumbnail
+                        : '../public/img/no-image-art-work.png'
+                    "
+                    cover
+                    height="150"
+                  />
+                  <v-card-title class="text-blue300">{{ item.raw.title }}</v-card-title>
+                  <v-card-subtitle class="font-weight-bold">
+                    {{ item.raw.category }}
+                  </v-card-subtitle>
+                </v-card>
+              </template>
+            </v-hover>
+          </v-col>
+        </v-row>
       </template>
+      <template v-slot:footer>
+        <v-pagination
+          v-model="page"
+          :length="Math.ceil(filteredContent.length / itemsPerPage)"
+          total-visible="7"
+          class="custom-pagination"
+        />
+      </template>
+    </v-data-iterator>
 
-      <v-col v-else cols="12">
-        <div v-for="category in filteredCategories" :key="category.name" class="mobile-category">
-          <h2 class="pt-6">{{ category.name }}</h2>
+    <v-row v-else>
+      <v-col cols="12">
+        <div
+          v-for="(category, idx) in filteredCategories"
+          :key="category.name"
+          class="mobile-category"
+        >
+          <h2 :class="idx !== 0 ? 'pt-6' : ''">{{ category.name }}</h2>
           <v-carousel cycle interval="5000" height="370" hide-delimiter-background color="black">
             <v-carousel-item
               v-for="(item, index) in category.items"
               :key="index"
               @click="goToDetails(item.id)"
             >
-              <v-card-title>{{ item.title }}</v-card-title>
-              <v-card-subtitle>{{ item.category }}</v-card-subtitle>
+              <v-card-title class="text-blue300">{{ item.title }}</v-card-title>
+              <v-card-subtitle class="text-black">{{ item.category }}</v-card-subtitle>
               <v-img
                 lazy-src="https://picsum.photos/id/11/10/6"
                 :src="item.thumbnail ? item.thumbnail : '../public/img/no-image-art-work.png'"
@@ -42,19 +78,25 @@
 </template>
 
 <script setup>
-import { onMounted, computed } from 'vue'
-import { useDisplay } from 'vuetify'
+import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useDisplay } from 'vuetify'
 import { useContentStore } from '../stores/content'
 
 const { mobile } = useDisplay()
+
+// Accessing the content store
 const contentStore = useContentStore()
 const router = useRouter()
+const page = ref(1)
+const itemsPerPage = ref(12)
 
+// Navigate to the details page of the selected content
 const goToDetails = (id) => {
   router.push({ name: 'Details', params: { id } })
 }
 
+// Computed property for filtering content based on the search query
 const filteredContent = computed(() => contentStore.filteredContent)
 
 const filteredCategories = computed(() => {
@@ -68,6 +110,7 @@ const filteredCategories = computed(() => {
   }))
 })
 
+// Load content when the component is mounted
 onMounted(() => {
   contentStore.loadContent()
 })
@@ -79,7 +122,6 @@ onMounted(() => {
 }
 
 .desktop-card {
-  background-color: var(--white);
   color: var(--v-black);
 }
 
@@ -94,7 +136,7 @@ onMounted(() => {
 }
 
 .mobile-card {
-  background-color: var(--v-white);
+  background-color: var(--v-gray100);
   color: var(--v-black);
   display: flex;
   flex-direction: column;
@@ -106,13 +148,6 @@ onMounted(() => {
 .mobile-card .v-card-subtitle {
   color: var(--v-black);
   text-align: center;
-}
-
-.v-carousel-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--v-gray100);
 }
 
 .v-carousel {

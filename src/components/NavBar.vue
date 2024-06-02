@@ -31,6 +31,7 @@
             text
             :to="route.path"
             style="background: transparent"
+            class="nav-btn"
             :class="{ 'active-nav-btn': isActive(route.path) }"
           >
             {{ route.name }}
@@ -38,7 +39,7 @@
         </v-btn-toggle>
       </v-col>
       <v-col cols="3" v-else>
-        <v-menu offset-y>
+        <v-menu offset-y width="150">
           <template v-slot:activator="{ props }">
             <v-btn icon v-bind="props">
               <v-icon icon="menu" />
@@ -57,7 +58,7 @@
             <v-list-item to="/artworks">
               <v-list-item-title>Artworks</v-list-item-title>
             </v-list-item>
-            <v-list-item to="/music">
+            <v-list-item to="/musics">
               <v-list-item-title>Music</v-list-item-title>
             </v-list-item>
           </v-list>
@@ -69,10 +70,11 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useContentStore } from '../stores/content'
-import { useDisplay } from 'vuetify'
 import { useRoute } from 'vue-router'
+import { useDisplay } from 'vuetify'
+import { useContentStore } from '../stores/content'
 
+// State for the search query
 const search = ref('')
 const contentStore = useContentStore()
 const { mobile } = useDisplay()
@@ -93,30 +95,33 @@ const routes = [
   { name: 'Games', path: '/games' },
   { name: 'Videos', path: '/videos' },
   { name: 'Artworks', path: '/artworks' },
-  { name: 'Music', path: '/music' }
+  { name: 'Musics', path: '/musics' }
 ]
 </script>
 
 <style scoped>
 .app-bar-gradient {
   background: linear-gradient(90deg, var(--v-blue300), var(--v-gray100)) !important;
-  color: var(--v-white);
+  color: var(--v-gray100);
 }
 
 .search-field {
-  background-color: var(--v-white);
-}
-
-.nav-btn {
-  color: var(--v-white) !important;
-  font-weight: bold;
+  background-color: var(--v-gray100);
 }
 
 .v-menu {
   color: var(--v-black);
 }
 
+.nav-btn {
+  font-weight: bold;
+}
+
 .active-nav-btn {
   color: var(--v-blue300) !important;
+}
+
+.nav-btn:hover {
+  color: var(--v-blue300);
 }
 </style>

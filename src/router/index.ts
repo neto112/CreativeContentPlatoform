@@ -1,44 +1,21 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import ArtWork from '../views/ArtWork/ArtWork.vue'
-import ContentDetails from '../views/ContentDetails.vue'
-import GamesView from '../views/Games/GamesView.vue'
-import HomeView from '../views/HomeView.vue'
-import MusicView from '../views/Music/MusicView.vue'
-import VideosView from '../views/Videos/VideosView.vue'
+
+const HomeView = () => import('../views/HomeView.vue')
+const ContentDetails = () => import('../views/ContentDetails.vue')
+const GamesView = () => import('../views/Games/GamesView.vue')
+const ArtWork = () => import('../views/ArtWork/ArtWork.vue')
+const VideosView = () => import('../views/Videos/VideosView.vue')
+const MusicView = () => import('../views/Music/MusicView.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: HomeView
-    },
-    {
-      path: '/details/:id',
-      name: 'Details',
-      component: ContentDetails
-    },
-    {
-      path: '/games',
-      name: 'Games',
-      component: GamesView
-    },
-    {
-      path: '/artwork',
-      name: 'ArtWork',
-      component: ArtWork
-    },
-    {
-      path: '/videos',
-      name: 'Videos',
-      component: VideosView
-    },
-    {
-      path: '/music',
-      name: 'Music',
-      component: MusicView
-    }
+    { path: '/', name: 'Home', component: HomeView },
+    { path: '/details/:id', name: 'Details', component: ContentDetails },
+    { path: '/games', name: 'Games', component: GamesView },
+    { path: '/artworks', name: 'ArtWorks', component: ArtWork },
+    { path: '/videos', name: 'Videos', component: VideosView },
+    { path: '/musics', name: 'Musics', component: MusicView }
   ]
 })
 

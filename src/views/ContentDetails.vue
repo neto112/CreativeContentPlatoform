@@ -5,33 +5,30 @@
         <v-progress-circular indeterminate color="blue" />
       </v-col>
     </v-row>
-    <v-row v-else>
-      <v-col cols="12" md="8">
-        <v-img
-          v-if="content"
-          :src="content.thumbnail"
-          height="auto"
-          width="100%"
-          class="mb-4 content-image"
-        />
-        <v-card-title class="content-title">{{ content.title }}</v-card-title>
-        <v-card-subtitle class="content-category">{{ content.category }}</v-card-subtitle>
-        <v-card-text class="content-description">{{ content.description }}</v-card-text>
+    <v-row v-else align="center">
+      <v-col cols="12" md="6">
+        <tempalte v-if="content.videoUrl">
+          <video controls :src="content.videoUrl" width="100%" class="mb-4 content-video" />
+        </tempalte>
+        <template v-else>
+          <v-img
+            v-if="content"
+            :src="content.thumbnail"
+            height="auto"
+            width="100%"
+            class="mb-4 content-image"
+            lazy-src="https://picsum.photos/id/11/10/6"
+          />
+        </template>
       </v-col>
-      <v-col cols="12" md="4">
-        <v-card class="rating-card">
-          <v-card-title class="rating-title">User Rating</v-card-title>
-          <v-card-subtitle class="rating-subtitle">Overall Experience</v-card-subtitle>
-          <v-card-text>
-            <v-rating
-              v-model="content.rating"
-              length="5"
-              half-increments
-              readonly
-              class="rating-stars"
-            />
-          </v-card-text>
-        </v-card>
+      <v-col cols="12" md="6">
+        <v-card-title class="text-blue300 content-title">{{ content.title }}</v-card-title>
+        <v-card-subtitle class="content-category">{{ content.category }}</v-card-subtitle>
+        <v-card-text class="content-description" v-html="content.description" />
+        <v-card-actions class="pt-0">
+          <span class="text-caption me-2">({{ content.rating }})</span>
+          <v-rating v-model="content.rating" length="5" half-increments readonly color="blue300" />
+        </v-card-actions>
       </v-col>
     </v-row>
   </v-container>
@@ -76,7 +73,6 @@ onMounted(() => {
 
 .content-title {
   font-size: 2rem;
-  color: var(--v-black);
   font-weight: bold;
 }
 
@@ -91,30 +87,6 @@ onMounted(() => {
   color: var(--v-black);
 }
 
-.rating-card {
-  background-color: var(--v-white);
-  padding: 16px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.rating-title {
-  font-size: 1.5rem;
-  color: var(--v-black);
-  font-weight: bold;
-}
-
-.rating-subtitle {
-  font-size: 1rem;
-  color: var(--v-blue300);
-  margin-bottom: 8px;
-}
-
-.rating-stars {
-  color: var(--v-blue300);
-}
-
-/* Responsividade */
 @media (max-width: 960px) {
   .content-title {
     font-size: 1.5rem;
@@ -125,14 +97,6 @@ onMounted(() => {
   }
 
   .content-description {
-    font-size: 0.9rem;
-  }
-
-  .rating-title {
-    font-size: 1.2rem;
-  }
-
-  .rating-subtitle {
     font-size: 0.9rem;
   }
 }

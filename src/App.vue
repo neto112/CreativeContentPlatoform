@@ -36,6 +36,6 @@ const cssProps = computed(() => {
 }
 
 .btn-text-transform {
-  text-transform: uppercase; /* Change to whatever text-transform you need */
+  text-transform: uppercase;
 }
 </style>

@@ -9,9 +9,9 @@ import 'vuetify/styles'
 const Lighttheme: ThemeDefinition = {
   colors: {
     gray100: '#E9E2CC',
-    white: '#F2ECD8',
     black: '#291C1D',
-    blue300: '#23AAE1'
+    blue300: '#23AAE1',
+    blue200: '#76B5C7'
   }
 }
 
@@ -42,12 +42,11 @@ export const vuetify = createVuetify({
       variant: 'outlined'
     },
     VBtn: {
-      color: 'black',
+      color: 'blue200',
       rounded: 'md',
       flat: true,
       fontWeight: '500',
       height: '48px',
-      variant: 'tonal',
       class: 'btn-text-transform text-subtitle-1'
     }
   }
