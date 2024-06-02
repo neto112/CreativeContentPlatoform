@@ -1,12 +1,14 @@
 <template>
   <v-app-bar app class="px-2 app-bar-gradient">
     <v-row align="center">
-      <v-col cols="auto" v-if="!mobile">
-        <v-img
-          src="https://gravity.blue/wp-content/uploads/2022/12/cropped-cropped-Filled_TextLongLogoNoUnderscore@2x-1.png"
-          height="64"
-          class="mr-4"
-        />
+      <v-col cols="3" v-if="!mobile">
+        <a href="https://gravity.blue/" target="_blank">
+          <v-img
+            src="https://gravity.blue/wp-content/uploads/2022/12/cropped-cropped-Filled_TextLongLogoNoUnderscore@2x-1.png"
+            height="64"
+            class="mr-4"
+          />
+        </a>
       </v-col>
       <v-col :cols="mobile ? 9 : 3">
         <v-text-field
@@ -99,8 +101,13 @@ const routes = [
 
 <style scoped>
 .app-bar-gradient {
-  background: linear-gradient(90deg, var(--v-blue300), var(--v-gray100)) !important;
+  background: linear-gradient(180deg, var(--v-blue200), var(--v-gray100)) !important;
   color: var(--v-gray100);
+}
+
+:deep(.v-toolbar__content) {
+  width: 83.33%;
+  margin: auto;
 }
 
 .v-menu {

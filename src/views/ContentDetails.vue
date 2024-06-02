@@ -1,8 +1,8 @@
 <template>
-  <v-container class="content-details-container">
+  <v-card flat class="content-details-container" :class="mobile ? 'mx-2' : ''">
     <v-row v-if="loading">
       <v-col cols="12" class="d-flex justify-center align-center">
-        <v-progress-circular indeterminate color="blue" />
+        <v-progress-circular indeterminate color="blue300" />
       </v-col>
     </v-row>
     <v-row v-else align="center">
@@ -31,18 +31,20 @@
         </v-card-actions>
       </v-col>
     </v-row>
-  </v-container>
+  </v-card>
 </template>
 
 <script setup>
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useContentStore } from '../stores/content'
+import { useDisplay } from 'vuetify'
 
 const content = ref(null)
 const loading = ref(true)
 const route = useRoute()
 const contentStore = useContentStore()
+const { mobile } = useDisplay()
 
 const loadContent = () => {
   loading.value = true

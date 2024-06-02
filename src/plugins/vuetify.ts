@@ -49,6 +49,10 @@ export const vuetify = createVuetify({
       fontWeight: '500',
       height: '48px',
       class: 'btn-text-transform text-subtitle-1'
+    },
+    VAlert: {
+      color: 'blue300',
+      variant: 'tonal'
     }
   }
 })

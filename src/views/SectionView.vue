@@ -1,6 +1,9 @@
 <template>
-  <v-container>
-    <v-row>
+  <div :class="mobile ? 'px-2' : ''">
+    <div v-if="filteredContent.length === 0">
+      <v-alert type="info" dismissible> No results found for your search. </v-alert>
+    </div>
+    <v-row v-else>
       <v-col v-for="item in filteredContent" :key="item.id" cols="12" sm="6" md="4" lg="3">
         <v-hover>
           <template v-slot:default="{ isHovering, props }">
@@ -14,7 +17,7 @@
                 lazy-src="https://picsum.photos/id/11/10/6"
                 :src="item.thumbnail ? item.thumbnail : '../public/img/no-image-art-work.png'"
                 cover
-                height="150"
+                :height="mobile ? 200 : 170"
               />
               <v-card-title class="text-blue300">{{ item.title }}</v-card-title>
               <v-card-subtitle class="font-weight-bold">
@@ -25,19 +28,21 @@
         </v-hover>
       </v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script setup>
 import { computed, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useContentStore } from '../stores/content'
+import { useDisplay } from 'vuetify'
 
 const contentStore = useContentStore()
 const route = useRoute()
+const { mobile } = useDisplay()
 
 const filteredContent = computed(() => {
-  return contentStore.content.filter(
+  return contentStore.filteredContent.filter(
     (item) => item.category.toLowerCase() === route.name.toLowerCase()
   )
 })

@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div :class="mobile ? 'px-2' : ''">
     <v-data-iterator
       :items="filteredContent"
       :items-per-page="itemsPerPage"
@@ -25,7 +25,7 @@
                         : '../public/img/no-image-art-work.png'
                     "
                     cover
-                    height="150"
+                    height="170"
                   />
                   <v-card-title class="text-blue300">{{ item.raw.title }}</v-card-title>
                   <v-card-subtitle class="font-weight-bold">
@@ -43,7 +43,13 @@
           :length="Math.ceil(filteredContent.length / itemsPerPage)"
           total-visible="7"
           class="custom-pagination"
+          v-if="Math.ceil(filteredContent.length / itemsPerPage) > 1"
+          color="blue300"
+          rounded="lg"
         />
+      </template>
+      <template v-slot:no-data>
+        <v-alert type="info" dismissible> No results found for your search. </v-alert>
       </template>
     </v-data-iterator>
 
@@ -55,26 +61,37 @@
           class="mobile-category"
         >
           <h2 :class="idx !== 0 ? 'pt-6' : ''">{{ category.name }}</h2>
-          <v-carousel cycle interval="5000" height="370" hide-delimiter-background color="black">
+          <v-carousel
+            v-if="filteredCategories[idx].items.length > 0"
+            cycle
+            interval="5000"
+            class="height-carousel"
+            hide-delimiter-background
+            color="blue300"
+          >
             <v-carousel-item
-              v-for="(item, index) in category.items"
+              v-for="(item, index) in filteredCategories[idx].items"
               :key="index"
               @click="goToDetails(item.id)"
             >
               <v-card-title class="text-blue300">{{ item.title }}</v-card-title>
-              <v-card-subtitle class="text-black">{{ item.category }}</v-card-subtitle>
               <v-img
                 lazy-src="https://picsum.photos/id/11/10/6"
                 :src="item.thumbnail ? item.thumbnail : '../public/img/no-image-art-work.png'"
-                height="250"
+                class="height-img"
                 cover
               />
             </v-carousel-item>
           </v-carousel>
+          <v-row v-if="filteredCategories[idx].items.length === 0">
+            <v-col cols="12" class="text-center">
+              <v-alert type="info" dismissible> No results found for {{ category.name }}. </v-alert>
+            </v-col>
+          </v-row>
         </div>
       </v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script setup>
@@ -160,5 +177,23 @@ onMounted(() => {
 
 h2 {
   color: var(--v-blue300);
+}
+
+.height-carousel {
+  height: 640px !important;
+}
+
+.height-img {
+  height: 520px;
+}
+
+@media (max-width: 600px) {
+  .height-carousel {
+    height: 340px !important;
+  }
+
+  .height-img {
+    height: 240px;
+  }
 }
 </style>

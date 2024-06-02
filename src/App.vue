@@ -1,18 +1,27 @@
 <template>
   <v-app :style="cssProps">
     <NavBar />
-    <v-main class="mt-3">
-      <router-view />
-    </v-main>
+    <v-row justify="center" no-gutters>
+      <v-col :cols="mobile ? 12 : 10">
+        <v-main class="mt-3">
+          <router-view />
+          <ScrollToTopButton />
+        </v-main>
+      </v-col>
+    </v-row>
+    <FooterView />
   </v-app>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useTheme } from 'vuetify'
+import { useTheme, useDisplay } from 'vuetify'
 import NavBar from './components/NavBar.vue'
+import FooterView from './components/FooterView.vue'
+import ScrollToTopButton from './components/ScrollToTopButton.vue'
 
 const theme = useTheme()
+const { mobile } = useDisplay()
 
 const cssProps = computed(() => {
   const themeColors: { [key: string]: string } = {}
