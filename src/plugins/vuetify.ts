@@ -8,10 +8,15 @@ import 'vuetify/styles'
 
 const Lighttheme: ThemeDefinition = {
   colors: {
-    gray100: '#E9E2CC',
-    black: '#291C1D',
-    blue300: '#23AAE1',
-    blue200: '#76B5C7'
+    primary: '#3399CC',
+    secondary: '#D1D5DB',
+    accent: '#EAF3FA',
+    background: '#FFFFFF',
+    surface: '#FFFFFF',
+    error: '#FF5252',
+    info: '#2196F3',
+    success: '#4CAF50',
+    warning: '#FB8C00'
   }
 }
 
@@ -40,10 +45,10 @@ export const vuetify = createVuetify({
   defaults: {
     VTextField: {
       variant: 'outlined',
-      bgColor: 'gray100'
+      bgColor: 'background'
     },
     VBtn: {
-      color: 'black',
+      color: 'primary',
       rounded: 'md',
       flat: true,
       fontWeight: '500',
@@ -51,7 +56,7 @@ export const vuetify = createVuetify({
       class: 'btn-text-transform text-subtitle-1'
     },
     VAlert: {
-      color: 'blue300',
+      color: 'primary',
       variant: 'tonal'
     }
   }

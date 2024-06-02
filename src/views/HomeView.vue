@@ -15,7 +15,7 @@
                   v-bind="props"
                   class="mb-4 desktop-card card-shadow"
                   @click="goToDetails(item.raw.id)"
-                  :color="isHovering ? 'gray100' : undefined"
+                  :color="isHovering ? 'secondary' : undefined"
                 >
                   <v-img
                     lazy-src="https://picsum.photos/id/11/10/6"
@@ -27,7 +27,7 @@
                     cover
                     height="170"
                   />
-                  <v-card-title class="text-blue300">{{ item.raw.title }}</v-card-title>
+                  <v-card-title class="text-primary">{{ item.raw.title }}</v-card-title>
                   <v-card-subtitle class="font-weight-bold">
                     {{ item.raw.category }}
                   </v-card-subtitle>
@@ -44,7 +44,7 @@
           total-visible="7"
           class="custom-pagination"
           v-if="Math.ceil(filteredContent.length / itemsPerPage) > 1"
-          color="blue300"
+          color="primary"
           rounded="lg"
         />
       </template>
@@ -67,14 +67,14 @@
             interval="5000"
             class="height-carousel"
             hide-delimiter-background
-            color="blue300"
+            color="primary"
           >
             <v-carousel-item
               v-for="(item, index) in filteredCategories[idx].items"
               :key="index"
               @click="goToDetails(item.id)"
             >
-              <v-card-title class="text-blue300">{{ item.title }}</v-card-title>
+              <v-card-title class="text-primary">{{ item.title }}</v-card-title>
               <v-img
                 lazy-src="https://picsum.photos/id/11/10/6"
                 :src="item.thumbnail ? item.thumbnail : '../public/img/no-image-art-work.png'"
@@ -139,22 +139,22 @@ onMounted(() => {
 }
 
 .desktop-card {
-  color: var(--v-black);
+  color: var(--v-primary);
 }
 
 .desktop-card .v-card-title,
 .desktop-card .v-card-subtitle {
-  color: var(--v-black);
+  color: var(--v-primary);
 }
 
 .mobile-category h2 {
-  color: var(--v-black);
+  color: var(--v-primary);
   margin-bottom: 16px;
 }
 
 .mobile-card {
-  background-color: var(--v-gray100);
-  color: var(--v-black);
+  background-color: var(--v-secondary);
+  color: var(--v-primary);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -163,12 +163,12 @@ onMounted(() => {
 
 .mobile-card .v-card-title,
 .mobile-card .v-card-subtitle {
-  color: var(--v-black);
+  color: var(--v-primary);
   text-align: center;
 }
 
 .v-carousel {
-  background-color: var(--v-gray100);
+  background-color: var(--v-secondary);
 }
 
 :deep(.v-window__controls button) {
@@ -176,7 +176,7 @@ onMounted(() => {
 }
 
 h2 {
-  color: var(--v-blue300);
+  color: var(--v-primary);
 }
 
 .height-carousel {

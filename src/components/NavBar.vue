@@ -17,7 +17,6 @@
           placeholder="Search"
           hide-details
           @input="updateSearch"
-          variant="filled"
           density="compact"
         />
       </v-col>
@@ -101,8 +100,8 @@ const routes = [
 
 <style scoped>
 .app-bar-gradient {
-  background: linear-gradient(180deg, var(--v-blue200), var(--v-gray100)) !important;
-  color: var(--v-gray100);
+  background: linear-gradient(180deg, var(--v-accent), var(--v-secondary)) !important;
+  color: var(--v-secondary);
 }
 
 :deep(.v-toolbar__content) {
@@ -111,7 +110,7 @@ const routes = [
 }
 
 .v-menu {
-  color: var(--v-black);
+  color: var(--v-primary);
 }
 
 .nav-btn {
@@ -119,10 +118,10 @@ const routes = [
 }
 
 .active-nav-btn {
-  color: var(--v-blue300) !important;
+  color: var(--v-primary) !important;
 }
 
 .nav-btn:hover {
-  color: var(--v-blue300);
+  color: var(--v-primary);
 }
 </style>

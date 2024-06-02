@@ -31,7 +31,7 @@ onUnmounted(() => {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: var(--v-blue300);
+  background-color: var(--v-primary);
   color: #fff;
   opacity: 0.6;
   z-index: 10;

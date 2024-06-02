@@ -11,7 +11,7 @@
               v-bind="props"
               class="mb-4 desktop-card card-shadow"
               @click="goToDetails(item.id)"
-              :color="isHovering ? 'gray100' : undefined"
+              :color="isHovering ? 'secondary' : undefined"
             >
               <v-img
                 lazy-src="https://picsum.photos/id/11/10/6"
@@ -19,7 +19,7 @@
                 cover
                 :height="mobile ? 200 : 170"
               />
-              <v-card-title class="text-blue300">{{ item.title }}</v-card-title>
+              <v-card-title class="text-primary">{{ item.title }}</v-card-title>
               <v-card-subtitle class="font-weight-bold">
                 {{ item.category }}
               </v-card-subtitle>
@@ -65,19 +65,19 @@ const goToDetails = (id) => {
 }
 
 .v-card-title {
-  color: var(--v-black);
+  color: var(--v-primary);
 }
 
 .v-card-subtitle {
-  color: var(--v-gray100);
+  color: var(--v-secondary);
 }
 
 .desktop-card {
-  color: var(--v-black);
+  color: var(--v-primary);
 }
 
 .desktop-card .v-card-title,
 .desktop-card .v-card-subtitle {
-  color: var(--v-black);
+  color: var(--v-primary);
 }
 </style>

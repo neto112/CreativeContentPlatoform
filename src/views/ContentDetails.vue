@@ -2,7 +2,7 @@
   <v-card flat class="content-details-container" :class="mobile ? 'mx-2' : ''">
     <v-row v-if="loading">
       <v-col cols="12" class="d-flex justify-center align-center">
-        <v-progress-circular indeterminate color="blue300" />
+        <v-progress-circular indeterminate color="primary" />
       </v-col>
     </v-row>
     <v-row v-else align="center">
@@ -22,12 +22,12 @@
         </template>
       </v-col>
       <v-col cols="12" md="6">
-        <v-card-title class="text-blue300 content-title">{{ content.title }}</v-card-title>
+        <v-card-title class="text-primary content-title">{{ content.title }}</v-card-title>
         <v-card-subtitle class="content-category">{{ content.category }}</v-card-subtitle>
         <v-card-text class="content-description" v-html="content.description" />
         <v-card-actions class="pt-0">
           <span class="text-caption me-2">({{ content.rating }})</span>
-          <v-rating v-model="content.rating" length="5" half-increments readonly color="blue300" />
+          <v-rating v-model="content.rating" length="5" half-increments readonly color="primary" />
         </v-card-actions>
       </v-col>
     </v-row>
@@ -63,7 +63,7 @@ onMounted(() => {
 
 <style scoped>
 .content-details-container {
-  background-color: var(--v-gray100);
+  background-color: var(--v-secondary);
   padding: 24px;
   border-radius: 8px;
 }
@@ -80,13 +80,13 @@ onMounted(() => {
 
 .content-category {
   font-size: 1.2rem;
-  color: var(--v-blue300);
+  color: var(--v-primary);
   margin-bottom: 16px;
 }
 
 .content-description {
   font-size: 1rem;
-  color: var(--v-black);
+  color: var(--v-primary);
 }
 
 @media (max-width: 960px) {
