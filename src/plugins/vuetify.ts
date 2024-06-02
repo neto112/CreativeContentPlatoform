@@ -45,7 +45,8 @@ export const vuetify = createVuetify({
   defaults: {
     VTextField: {
       variant: 'outlined',
-      bgColor: 'background'
+      bgColor: 'background',
+      style: 'font-family: Arial, sans-serif;'
     },
     VBtn: {
       color: 'primary',
@@ -53,11 +54,13 @@ export const vuetify = createVuetify({
       flat: true,
       fontWeight: '500',
       height: '48px',
-      class: 'btn-text-transform text-subtitle-1'
+      class: 'btn-text-transform text-subtitle-1',
+      style: 'font-family: Arial, sans-serif;'
     },
     VAlert: {
       color: 'primary',
-      variant: 'tonal'
+      variant: 'tonal',
+      style: 'font-family: Arial, sans-serif;'
     }
   }
 })
