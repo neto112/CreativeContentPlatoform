@@ -12,13 +12,11 @@
         <v-text-field
           v-model="search"
           append-inner-icon="search"
-          label="Search"
-          single-line
+          placeholder="Search"
           hide-details
           @input="updateSearch"
           variant="filled"
           density="compact"
-          class="search-field"
         />
       </v-col>
       <v-spacer></v-spacer>
@@ -103,10 +101,6 @@ const routes = [
 .app-bar-gradient {
   background: linear-gradient(90deg, var(--v-blue300), var(--v-gray100)) !important;
   color: var(--v-gray100);
-}
-
-.search-field {
-  background-color: var(--v-gray100);
 }
 
 .v-menu {

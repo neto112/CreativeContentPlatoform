@@ -39,7 +39,8 @@ export const vuetify = createVuetify({
   },
   defaults: {
     VTextField: {
-      variant: 'outlined'
+      variant: 'outlined',
+      bgColor: 'gray100'
     },
     VBtn: {
       color: 'blue200',
