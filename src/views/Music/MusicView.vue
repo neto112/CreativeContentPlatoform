@@ -1,5 +1,7 @@
 <template>
-  <v-containter class=""> oi </v-containter>
+  <SectionView />
 </template>
 
-<script setup lang="ts"></script>
+<script setup>
+import SectionView from '../SectionView.vue'
+</script>
