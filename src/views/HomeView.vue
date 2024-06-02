@@ -154,6 +154,10 @@ onMounted(() => {
   background-color: var(--v-gray100);
 }
 
+:deep(.v-window__controls button) {
+  opacity: 0.7;
+}
+
 h2 {
   color: var(--v-blue300);
 }

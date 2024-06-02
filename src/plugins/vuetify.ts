@@ -43,7 +43,7 @@ export const vuetify = createVuetify({
       bgColor: 'gray100'
     },
     VBtn: {
-      color: 'blue200',
+      color: 'black',
       rounded: 'md',
       flat: true,
       fontWeight: '500',
